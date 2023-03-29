@@ -1,4 +1,4 @@
-package ru.gb.oseminar;
+package ru.gb.oseminar.model;
 
 public class HotDrink extends BottleOfWater {
     private int temperature;

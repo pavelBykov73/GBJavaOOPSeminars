@@ -1,4 +1,4 @@
-package ru.gb.oseminar;
+package ru.gb.oseminar.model;
 
 public class BottleOfWater extends Product {
     private int volume;

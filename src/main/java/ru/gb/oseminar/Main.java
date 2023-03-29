@@ -1,5 +1,7 @@
 package ru.gb.oseminar;
 
+import ru.gb.oseminar.model.*;
+
 import java.util.ArrayList;
 import java.util.List;
 

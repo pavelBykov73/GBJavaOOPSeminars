@@ -1,4 +1,4 @@
-package ru.gb.oseminar;
+package ru.gb.oseminar.model;
 
 public abstract class Product {
     private String name;
@@ -28,8 +28,8 @@ public abstract class Product {
     @Override
     public String toString() {
         return "Product{" +
-               "name='" + name + '\'' +
-               ", cost=" + cost +
-               '}';
+                "name='" + name + '\'' +
+                ", cost=" + cost +
+                '}';
     }
 }

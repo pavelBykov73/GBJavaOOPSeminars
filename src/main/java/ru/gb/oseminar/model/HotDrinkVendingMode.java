@@ -1,4 +1,4 @@
-package ru.gb.oseminar;
+package ru.gb.oseminar.model;
 
 public enum HotDrinkVendingMode {
     HEATER(1), COOLER(2), NONE(0);
