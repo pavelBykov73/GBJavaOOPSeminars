@@ -2,10 +2,10 @@ package ru.gb.oseminar.model;
 
 import java.util.List;
 
-public class BottleOfWaterVendingMachine implements VendingMachine {
+public class DrinkVendingMachine implements VendingMachine {
     private final List<Product> products;
 
-    public BottleOfWaterVendingMachine(List<Product> products) {
+    public DrinkVendingMachine(List<Product> products) {
         this.products = products;
     }
 
@@ -18,11 +18,11 @@ public class BottleOfWaterVendingMachine implements VendingMachine {
         throw new IllegalStateException(String.format("Продукт c названием %s не найден.", name));
     }
 
-    public BottleOfWater getProduct(String name, int volume) {
+    public Drink getProduct(String name, int volume) {
         for (Product product : products) {
-            if (product instanceof BottleOfWater) {
-                if (product.getName().equalsIgnoreCase(name) && ((BottleOfWater) product).getVolume() == volume) {
-                    return (BottleOfWater) product;
+            if (product instanceof Drink) {
+                if (product.getName().equalsIgnoreCase(name) && ((Drink) product).getVolume() == volume) {
+                    return (Drink) product;
                 }
             }
 

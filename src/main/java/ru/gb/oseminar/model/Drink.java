@@ -1,10 +1,10 @@
 package ru.gb.oseminar.model;
 
-public class BottleOfWater extends Product {
+public class Drink extends Product {
     private int volume;
 
 
-    public BottleOfWater(String name, double cost, int volume) {
+    public Drink(String name, double cost, int volume) {
         super(name, cost);
         this.volume = volume;
     }
@@ -19,7 +19,7 @@ public class BottleOfWater extends Product {
 
     @Override
     public String toString() {
-        return "BottleOfWater {" +
+        return "Drink {" +
                 "name='" + super.getName() + '\'' +
                 ", volume='" + this.volume + '\'' +
                 ", cost=" + super.getCost() +
@@ -31,11 +31,11 @@ public class BottleOfWater extends Product {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof BottleOfWater)) {
+        if (!(o instanceof Drink)) {
             return false;
         }
 
-        BottleOfWater that = (BottleOfWater) o;
+        Drink that = (Drink) o;
 
         return super.getName().equalsIgnoreCase(that.getName())
                 && super.getCost() == that.getCost()

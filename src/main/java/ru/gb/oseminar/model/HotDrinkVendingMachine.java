@@ -25,7 +25,10 @@ public class HotDrinkVendingMachine implements VendingMachine {
                 return product;
             }
         }
-        throw new IllegalStateException(String.format("Продукт c названием %s не найден.", name));
+        System.out.printf("Продукт c названием %s не найден.",
+                name);
+        return null;
+//        throw new IllegalStateException(String.format("Продукт c названием %s не найден.", name));
     }
 
     public HotDrink getProduct(String name, int volume, int temperature) {
@@ -54,18 +57,28 @@ public class HotDrinkVendingMachine implements VendingMachine {
 //                name, volume, temperature));
     }
 
-    public HotDrink getProduct(String name, int volume) {
+    /**
+     * Получение напитка без учета температуры
+     *
+     * @param name
+     * @param volume
+     * @return
+     */
+    public Drink getProduct(String name, int volume) {
         for (Product product : products) {
-            if (product instanceof HotDrink) {
+            if (product instanceof Drink || product instanceof HotDrink) {
                 if (product.getName().equalsIgnoreCase(name)
-                        && ((HotDrink) product).getVolume() == volume
+                        && ((Drink) product).getVolume() == volume
                 ) {
-                    return (HotDrink) product;
+                    return (Drink) product;
                 }
             }
         }
-        throw new IllegalStateException(String.format("Продукт c названием %s, объемом %d не найден.",
-                name, volume));
+        System.out.printf("Продукт c названием %s, объемом %d не найден.",
+                name, volume);
+        return null;
+//        throw new IllegalStateException(String.format("Продукт c названием %s, объемом %d не найден.",
+//                name, volume));
     }
 
     public void addProduct(Product newItem) {

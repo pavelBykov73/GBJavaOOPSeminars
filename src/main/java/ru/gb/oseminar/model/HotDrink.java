@@ -1,6 +1,6 @@
 package ru.gb.oseminar.model;
 
-public class HotDrink extends BottleOfWater {
+public class HotDrink extends Drink {
     private int temperature;
 
     public HotDrink(String name, double cost, int volume, int temperature) {
