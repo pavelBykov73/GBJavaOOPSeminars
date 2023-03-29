@@ -47,7 +47,7 @@ public class Main {
             System.out.println(hotDrinkVendingMachine.getProduct("Молоко", 200));
 
             // и напиток без учета температуры
-            System.out.println(hotDrinkVendingMachine.getProduct("Чай", 200));
+            System.out.println(hotDrinkVendingMachine.getProduct("Чай горячий", 200));
 
             // По умолчанию, автомат выдает напиток, если температура точно совпадает с необходимой
             // Если включить режим "Нагрев", то автомат умеет и нагревать напиток до нужной температуры
