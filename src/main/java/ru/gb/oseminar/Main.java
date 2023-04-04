@@ -15,19 +15,19 @@ import java.util.List;
  * Все вышеуказанное создать согласно принципам ООП пройдённым на семинаре
  */
 public class Main {
-    private static List<Product> drinkProducts;
-    private static List<Product> hotDrinkProducts;
     private static DrinkVendingMachine drinkVendingMachine;
     private static HotDrinkVendingMachine hotDrinkVendingMachine;
 
     public static void main(String[] args) {
-        drinkProducts = new ArrayList<>();
-        drinkVendingMachine = new DrinkVendingMachine(drinkProducts);
+        drinkVendingMachine = new DrinkVendingMachine();
         PutProductToBottleOfWaterVendingMachine();
 
-        hotDrinkProducts = new ArrayList<>();
-        hotDrinkVendingMachine = new HotDrinkVendingMachine(hotDrinkProducts);
+        hotDrinkVendingMachine = new HotDrinkVendingMachine();
         PutProductToHotDrinkVendingMachine();
+
+        for (Product product : drinkVendingMachine) {
+            System.out.println(product);
+        }
 
         try {
             // test BottleOfWaterVendingMachine
