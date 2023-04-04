@@ -1,6 +1,7 @@
 package ru.gb.oseminar.model;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -54,5 +55,8 @@ public abstract class VendingMachine implements IVendingMachine, Iterable<Produc
         return it;
     }
 
+    public void sort(Comparator<Product> comparator) {
+        products.sort(comparator);
+    }
 
 }
