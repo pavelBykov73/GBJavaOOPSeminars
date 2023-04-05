@@ -1,6 +1,6 @@
 package ru.gb.oseminar.model;
 
-public class Drink extends Product {
+public class Drink extends Product implements Comparable<Drink> {
     private int volume;
 
 
@@ -40,5 +40,10 @@ public class Drink extends Product {
         return super.getName().equalsIgnoreCase(that.getName())
                 && super.getCost() == that.getCost()
                 && getVolume() == that.getVolume();
+    }
+
+    @Override
+    public int compareTo(Drink o) {
+        return Integer.compare(getVolume(), o.getVolume());
     }
 }

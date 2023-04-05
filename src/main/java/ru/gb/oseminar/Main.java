@@ -2,6 +2,8 @@ package ru.gb.oseminar;
 
 import ru.gb.oseminar.model.*;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 
 
@@ -39,7 +41,7 @@ public class Main {
         }
 
         System.out.println("\nСортировка по цене:");
-        drinkVendingMachine.sort(new ProductPriceComparator());
+        drinkVendingMachine.sort(new DrinkVolumeComparator());
         for (Product product : drinkVendingMachine) {
             System.out.println(product);
         }
