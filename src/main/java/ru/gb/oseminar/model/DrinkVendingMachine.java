@@ -20,4 +20,8 @@ public class DrinkVendingMachine extends VendingMachine {
         throw new IllegalStateException(String.format("Продукт c названием %s не найден.", name));
     }
 
+    @Override
+    public String toString() {
+        return "Drink Vending Machine";
+    }
 }

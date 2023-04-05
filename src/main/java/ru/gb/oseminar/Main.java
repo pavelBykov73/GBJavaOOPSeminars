@@ -2,6 +2,8 @@ package ru.gb.oseminar;
 
 import ru.gb.oseminar.model.*;
 
+import java.util.Comparator;
+
 
 /**
  * Проведена оптимизация структуры, используя обобщения, итераторы и компараторы
@@ -25,51 +27,64 @@ public class Main {
         hotDrinkVendingMachine = new HotDrinkVendingMachine();
         PutProductToHotDrinkVendingMachine();
 
+        System.out.println("\nНапитки без сортировки в автомате : " + drinkVendingMachine);
         for (Product product : drinkVendingMachine) {
             System.out.println(product);
         }
 
-        System.out.println("Сортировка по имени:");
+        System.out.println("\nСортировка по имени:");
         drinkVendingMachine.sort(new ProductNameComparator());
         for (Product product : drinkVendingMachine) {
             System.out.println(product);
         }
 
-        System.out.println("Сортировка по цене:");
+        System.out.println("\nСортировка по цене:");
         drinkVendingMachine.sort(new ProductPriceComparator());
         for (Product product : drinkVendingMachine) {
             System.out.println(product);
         }
 
-//        try {
-//            // test BottleOfWaterVendingMachine
-//            System.out.println(drinkVendingMachine.getProduct("молоко"));
-//
-//            Drink bottleOfWater = drinkVendingMachine.getProduct("Кола 1l", 1000);
-//            System.out.println(bottleOfWater);
-//
-//            // test hotDrinkVendingMachine
-//            System.out.println(hotDrinkVendingMachine.getProduct("Чай горячий", 200, 90));
-//            System.out.println(hotDrinkVendingMachine.getProduct("Чай", 200, 90));
-//            System.out.println(hotDrinkVendingMachine.getProduct("Чай горячий", 200, 80));
-//            System.out.println(hotDrinkVendingMachine.getProduct("Американо", 250, 95));
-//
-//            // проверим, сможем ли получить простые напитки
-//            System.out.println(hotDrinkVendingMachine.getProduct("Чай", 200));
-//            System.out.println(hotDrinkVendingMachine.getProduct("Молоко", 200));
-//
-//            // и напиток без учета температуры
-//            System.out.println(hotDrinkVendingMachine.getProduct("Чай горячий", 200));
-//
-//            // По умолчанию, автомат выдает напиток, если температура точно совпадает с необходимой
-//            // Если включить режим "Нагрев", то автомат умеет и нагревать напиток до нужной температуры
-//            // Для эксперимента, поуправляем режимом извне (из Main) и проверим
-//            hotDrinkVendingMachine.setMode(HotDrinkVendingMode.HEATER);
-//            System.out.println(hotDrinkVendingMachine.getProduct("Капуччино", 150, 95));
-//
-//        } catch (Exception ex) {
-//            System.out.println(ex.getMessage());
-//        }
+        System.out.println("\nНапитки без сортировки в автомате : " + hotDrinkVendingMachine);
+        for (Product product : hotDrinkVendingMachine) {
+            System.out.println(product);
+        }
+
+        System.out.println("\nСортировка по объему:");
+        hotDrinkVendingMachine.sort(new DrinkVolumeComparator());
+        for (Product product : hotDrinkVendingMachine) {
+            System.out.println(product);
+        }
+        System.out.println("");
+
+        try {
+            // test BottleOfWaterVendingMachine
+            System.out.println(drinkVendingMachine.getProduct("молоко"));
+
+            Drink bottleOfWater = drinkVendingMachine.getProduct("Кола 1l", 1000);
+            System.out.println(bottleOfWater);
+
+            // test hotDrinkVendingMachine
+            System.out.println(hotDrinkVendingMachine.getProduct("Чай горячий", 200, 90));
+            System.out.println(hotDrinkVendingMachine.getProduct("Чай", 200, 90));
+            System.out.println(hotDrinkVendingMachine.getProduct("Чай горячий", 200, 80));
+            System.out.println(hotDrinkVendingMachine.getProduct("Американо", 250, 95));
+
+            // проверим, сможем ли получить простые напитки
+            System.out.println(hotDrinkVendingMachine.getProduct("Чай", 200));
+            System.out.println(hotDrinkVendingMachine.getProduct("Молоко", 200));
+
+            // и напиток без учета температуры
+            System.out.println(hotDrinkVendingMachine.getProduct("Чай горячий", 200));
+
+            // По умолчанию, автомат выдает напиток, если температура точно совпадает с необходимой
+            // Если включить режим "Нагрев", то автомат умеет и нагревать напиток до нужной температуры
+            // Для эксперимента, поуправляем режимом извне (из Main) и проверим
+            hotDrinkVendingMachine.setMode(HotDrinkVendingMode.HEATER);
+            System.out.println(hotDrinkVendingMachine.getProduct("Капуччино", 150, 95));
+
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     private static void PutProductToBottleOfWaterVendingMachine() {

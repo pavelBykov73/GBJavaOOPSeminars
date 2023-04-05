@@ -64,4 +64,9 @@ public class HotDrinkVendingMachine extends VendingMachine {
                 name, volume);
         return null;
     }
+
+    @Override
+    public String toString() {
+        return "Hot Drink Vending Machine";
+    }
 }
