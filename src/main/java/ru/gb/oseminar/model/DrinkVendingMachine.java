@@ -1,21 +1,12 @@
 package ru.gb.oseminar.model;
 
+import java.util.Iterator;
 import java.util.List;
 
-public class DrinkVendingMachine implements VendingMachine {
-    private final List<Product> products;
+public class DrinkVendingMachine extends VendingMachine {
 
-    public DrinkVendingMachine(List<Product> products) {
-        this.products = products;
-    }
-
-    public Product getProduct(String name) {
-        for (Product product : products) {
-            if (product.getName().equalsIgnoreCase(name)) {
-                return product;
-            }
-        }
-        throw new IllegalStateException(String.format("Продукт c названием %s не найден.", name));
+    public DrinkVendingMachine() {
+        super();
     }
 
     public Drink getProduct(String name, int volume) {
@@ -25,13 +16,12 @@ public class DrinkVendingMachine implements VendingMachine {
                     return (Drink) product;
                 }
             }
-
         }
         throw new IllegalStateException(String.format("Продукт c названием %s не найден.", name));
     }
 
-    public void addProduct(Product newItem) {
-        products.add(newItem);
+    @Override
+    public String toString() {
+        return "Drink Vending Machine";
     }
-
 }

@@ -2,12 +2,10 @@ package ru.gb.oseminar.model;
 
 import java.util.List;
 
-public class HotDrinkVendingMachine implements VendingMachine {
-    private final List<Product> products; // Почему не HotDrink?
+public class HotDrinkVendingMachine extends VendingMachine {
     private HotDrinkVendingMode mode;
 
-    public HotDrinkVendingMachine(List<Product> products) {
-        this.products = products;
+    public HotDrinkVendingMachine() {
         mode = HotDrinkVendingMode.NONE;
     }
 
@@ -17,18 +15,6 @@ public class HotDrinkVendingMachine implements VendingMachine {
 
     public void setMode(HotDrinkVendingMode mode) {
         this.mode = mode;
-    }
-
-    public Product getProduct(String name) {
-        for (Product product : products) {
-            if (product.getName().equalsIgnoreCase(name)) {
-                return product;
-            }
-        }
-        System.out.printf("Продукт c названием %s не найден.",
-                name);
-        return null;
-//        throw new IllegalStateException(String.format("Продукт c названием %s не найден.", name));
     }
 
     public HotDrink getProduct(String name, int volume, int temperature) {
@@ -77,11 +63,10 @@ public class HotDrinkVendingMachine implements VendingMachine {
         System.out.printf("Продукт c названием %s, объемом %d не найден.",
                 name, volume);
         return null;
-//        throw new IllegalStateException(String.format("Продукт c названием %s, объемом %d не найден.",
-//                name, volume));
     }
 
-    public void addProduct(Product newItem) {
-        products.add(newItem);
+    @Override
+    public String toString() {
+        return "Hot Drink Vending Machine";
     }
 }

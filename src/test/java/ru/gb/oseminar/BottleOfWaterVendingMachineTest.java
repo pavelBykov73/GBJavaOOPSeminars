@@ -12,21 +12,19 @@ import java.util.List;
 
 class BottleOfWaterVendingMachineTest {
 
-    private List<Product> products;
     private DrinkVendingMachine vendingMachine;
 
     @BeforeEach
     void setUp() {
-        this.products = new ArrayList<>();
-        this.vendingMachine = new DrinkVendingMachine(products);
+        this.vendingMachine = new DrinkVendingMachine();
     }
 
     @Test
     void getProductTestSuccessful() {
         // expected
-        products.add(new Drink("ExampleName1", 1.0d, 1000));
-        products.add(new Drink("ExampleName2", 2.0d, 500));
-        this.vendingMachine = new DrinkVendingMachine(products);
+        vendingMachine.addProduct(new Drink("ExampleName1", 1.0d, 1000));
+        vendingMachine.addProduct(new Drink("ExampleName2", 2.0d, 500));
+        this.vendingMachine = new DrinkVendingMachine();
         Drink expected = new Drink("ExampleName2", 2.0d, 500);
 
         // actual

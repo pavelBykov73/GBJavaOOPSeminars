@@ -3,9 +3,13 @@ package ru.gb.oseminar;
 import ru.gb.oseminar.model.*;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Collections;
+import java.util.Comparator;
+
 
 /**
+ * Проведена оптимизация структуры, используя обобщения, итераторы и компараторы
+ * <p>
  * Создать наследника реализованного класса ГорячийНапиток с дополнительным полем int температура.
  * Создать класс ГорячихНапитковАвтомат реализующий интерфейс ТорговыйАвтомат и
  * реализовать перегруженный метод getProduct(int name, int volume, int temperature)
@@ -15,19 +19,44 @@ import java.util.List;
  * Все вышеуказанное создать согласно принципам ООП пройдённым на семинаре
  */
 public class Main {
-    private static List<Product> drinkProducts;
-    private static List<Product> hotDrinkProducts;
     private static DrinkVendingMachine drinkVendingMachine;
     private static HotDrinkVendingMachine hotDrinkVendingMachine;
 
     public static void main(String[] args) {
-        drinkProducts = new ArrayList<>();
-        drinkVendingMachine = new DrinkVendingMachine(drinkProducts);
+        drinkVendingMachine = new DrinkVendingMachine();
         PutProductToBottleOfWaterVendingMachine();
 
-        hotDrinkProducts = new ArrayList<>();
-        hotDrinkVendingMachine = new HotDrinkVendingMachine(hotDrinkProducts);
+        hotDrinkVendingMachine = new HotDrinkVendingMachine();
         PutProductToHotDrinkVendingMachine();
+
+        System.out.println("\nНапитки без сортировки в автомате : " + drinkVendingMachine);
+        for (Product product : drinkVendingMachine) {
+            System.out.println(product);
+        }
+
+        System.out.println("\nСортировка по имени:");
+        drinkVendingMachine.sort(new ProductNameComparator());
+        for (Product product : drinkVendingMachine) {
+            System.out.println(product);
+        }
+
+        System.out.println("\nСортировка по цене:");
+        drinkVendingMachine.sort(new DrinkVolumeComparator());
+        for (Product product : drinkVendingMachine) {
+            System.out.println(product);
+        }
+
+        System.out.println("\nНапитки без сортировки в автомате : " + hotDrinkVendingMachine);
+        for (Product product : hotDrinkVendingMachine) {
+            System.out.println(product);
+        }
+
+        System.out.println("\nСортировка по объему:");
+        hotDrinkVendingMachine.sort(new DrinkVolumeComparator());
+        for (Product product : hotDrinkVendingMachine) {
+            System.out.println(product);
+        }
+        System.out.println("");
 
         try {
             // test BottleOfWaterVendingMachine
