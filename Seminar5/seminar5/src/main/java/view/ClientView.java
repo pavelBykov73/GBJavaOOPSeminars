@@ -12,6 +12,14 @@ public class ClientView implements IUserView<Client> {
     public ClientView() {
     }
 
+    public static int getDepositChangeValue() {
+        return Console.inputInteger("Введите сумму операции:");
+    }
+
+    public static void textMsg(String s) {
+        System.out.println(s);
+    }
+
     @Override
     public void print(List<Client> list) {
         int i = 0;

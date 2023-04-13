@@ -4,6 +4,7 @@ import model.Bank;
 import model.Client;
 import model.Person;
 import service.BankService;
+import service.ClientService;
 import view.ClientView;
 import view.Console;
 import view.PersonView;
@@ -95,6 +96,8 @@ public class BankController implements IBankController {
     private void clientMenu() {
         clientView.print(getClients());
         int clientIdx = Console.inputIntegerLimit("input client number:", 0, bankService.getAll().size() - 1);
+        Client client = getClient(clientIdx);
+        ClientService clientService = new ClientService(client);
         StringBuilder menuString = new StringBuilder()
                 .append("\n ==== \n")
                 .append("1 - deposit operation\n")
@@ -106,10 +109,10 @@ public class BankController implements IBankController {
             int ret = Console.inputInteger(menuString.toString());
             switch (ret) {
                 case 1:
-                    //depositChange(getClient(clientIdx));
+                    clientService.depositOperation();
                     break;
                 case 2:
-                    deleteClient(getClient(clientIdx));
+                    deleteClient(client);
                     return;
                 case 0:
                     return;
