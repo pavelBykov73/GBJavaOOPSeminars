@@ -9,7 +9,7 @@ import java.util.List;
 public interface IBankService {
     List<Client> getAll();
 
-    void create(String firstName, String lastName, LocalDate dateOfBirth);
+    boolean create(String firstName, String lastName, LocalDate dateOfBirth);
 
     boolean delete(Client client);
 

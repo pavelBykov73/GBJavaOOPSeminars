@@ -14,9 +14,10 @@ public class ClientView implements IUserView<Client> {
 
     @Override
     public void print(List<Client> list) {
+        int i = 0;
         for (Client client : list) {
-            System.out.println(client);
+            System.out.println(i + ": " + client);
+            i++;
         }
     }
-
 }

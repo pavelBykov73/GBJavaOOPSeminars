@@ -31,8 +31,12 @@ public class Client extends Person implements Comparable<Client> {
         return deposit;
     }
 
-    public void setDeposit(int deposit) {
-        this.deposit = deposit;
+    public boolean pushDeposit(int debit) {
+        if (this.deposit + debit < 0) {
+            return false;
+        }
+        this.deposit += debit;
+        return true;
     }
 
     @Override

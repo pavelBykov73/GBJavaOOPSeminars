@@ -29,10 +29,19 @@ public class BankService implements IBankService {
         return countMaxId;
     }
 
+    private boolean checkExist(Person person) {
+        for (Client client : bank.getClients()) {
+            if ((person.equals((Person) client))) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     @Override
-    public void create(String firstName, String lastName, LocalDate dateOfBirth) {
-        Client client = new Client(firstName, lastName, dateOfBirth, getClientMaxId() + 1);
-        bank.getClients().add(client);
+    public boolean create(String firstName, String lastName, LocalDate dateOfBirth) {
+        Person person = new Person(firstName, lastName, dateOfBirth);
+        return add(person);
     }
 
     @Override
@@ -48,11 +57,17 @@ public class BankService implements IBankService {
 
     @Override
     public boolean add(Person person) {
-//        Client newClient = new Client()
-//        if (!bank.getClients().contains(o)) {
-//            create(o.getFirstName(), o.getLastName(), o.getDateOfBirth()); // bank.getClients().add(o);
-//            return true;
-//        }
+        if (!checkExist(person)) {
+            Client client = new Client(person.getFirstName(), person.getLastName(),
+                    person.getDateOfBirth(), getClientMaxId() + 1);
+            bank.getClients().add(client);
+            return true;
+        }
         return false;
+    }
+
+    @Override
+    public String toString() {
+        return bank.toString();
     }
 }
