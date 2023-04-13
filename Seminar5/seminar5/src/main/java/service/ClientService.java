@@ -10,6 +10,10 @@ public class ClientService {
         this.client = client;
     }
 
+    public Client getClient() {
+        return client;
+    }
+
     public void depositOperation() {
         int value = ClientView.getDepositChangeValue();
         if (client.pushDeposit(value)) {
@@ -17,5 +21,9 @@ public class ClientService {
         } else {
             ClientView.textMsg("Средств недостаточно! Операция провалена!");
         }
+    }
+
+    public int getOperationWithClient() {
+        return ClientView.getOperationWithClient();
     }
 }

@@ -6,7 +6,6 @@ import model.Person;
 import service.BankService;
 import service.ClientService;
 import view.ClientView;
-import view.Console;
 import view.PersonView;
 
 import java.time.LocalDate;
@@ -14,11 +13,9 @@ import java.util.List;
 
 public class BankController implements IBankController {
     BankService bankService;
-    ClientView clientView;
 
     public BankController() {
         bankService = new BankService(new Bank("First bank"));
-        clientView = new ClientView();
     }
 
     public void fillBankTestClient() {
@@ -65,27 +62,20 @@ public class BankController implements IBankController {
 
     @Override
     public void mainMenu() {
-        StringBuilder sb = new StringBuilder()
-                .append("\n == ")
-                .append(bankService.toString())
-                .append(" == \n")
-                .append("1 - view all clients\n")
-                .append("2 - add new client\n")
-                .append("3 - Operation with client\n")
-                .append("0 - exit\n");
-
         while (true) {
-            //int ret = BankView.getAction();
-            int ret = Console.inputInteger(sb.toString());
+            int ret = bankService.getOperation();
             switch (ret) {
                 case 1:
-                    clientView.print(getClients());
+                    bankService.showAllClients();
                     break;
                 case 2:
-                    addClient(PersonView.inputPerson());
+                    clientMenu();
                     break;
                 case 3:
-                    clientMenu();
+                    addClient(PersonView.inputPerson());
+                    break;
+                case 4:
+                    bankService.delete(bankService.selectClient());
                     break;
                 case 0:
                     return;
@@ -94,26 +84,16 @@ public class BankController implements IBankController {
     }
 
     private void clientMenu() {
-        clientView.print(getClients());
-        int clientIdx = Console.inputIntegerLimit("input client number:", 0, bankService.getAll().size() - 1);
-        Client client = getClient(clientIdx);
-        ClientService clientService = new ClientService(client);
-        StringBuilder menuString = new StringBuilder()
-                .append("\n ==== \n")
-                .append("1 - deposit operation\n")
-                .append("2 - delete client\n")
-                .append("0 - exit\n");
-
+        ClientService clientService = new ClientService(bankService.selectClient());
         while (true) {
-            System.out.println(bankService.getAll().get(clientIdx).toString());
-            int ret = Console.inputInteger(menuString.toString());
+            ClientView.clientInfoUpdate(clientService.getClient());
+            int ret = ClientView.getOperationWithClient();
             switch (ret) {
                 case 1:
                     clientService.depositOperation();
                     break;
                 case 2:
-                    deleteClient(client);
-                    return;
+                    break;
                 case 0:
                     return;
             }

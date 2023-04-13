@@ -12,6 +12,7 @@ public class ClientView implements IUserView<Client> {
     public ClientView() {
     }
 
+    // TODO уйти от static
     public static int getDepositChangeValue() {
         return Console.inputInteger("Введите сумму операции:");
     }
@@ -20,12 +21,17 @@ public class ClientView implements IUserView<Client> {
         System.out.println(s);
     }
 
-    @Override
-    public void print(List<Client> list) {
-        int i = 0;
-        for (Client client : list) {
-            System.out.println(i + ": " + client);
-            i++;
-        }
+    public static int getOperationWithClient() { // TODO create enum
+        StringBuilder menuString = new StringBuilder()
+                .append("\n ==== \n")
+                .append("1 - deposit operation\n")
+                .append("2 - change First name\n")
+                .append("0 - exit\n");
+        textMsg(menuString.toString());
+        return Console.inputIntegerLimit(">", 0, 2);
+    }
+
+    public static void clientInfoUpdate(Client client) {
+        textMsg(client.toString());
     }
 }

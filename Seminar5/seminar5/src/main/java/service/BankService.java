@@ -3,15 +3,19 @@ package service;
 import model.Bank;
 import model.Client;
 import model.Person;
+import view.BankView;
+import view.ClientView;
 
 import java.time.LocalDate;
 import java.util.List;
 
 public class BankService implements IBankService {
     private Bank bank;
+    private BankView bankView;
 
     public BankService(Bank bank) {
         this.bank = bank;
+        this.bankView = new BankView(bank);
     }
 
     @Override
@@ -69,5 +73,18 @@ public class BankService implements IBankService {
     @Override
     public String toString() {
         return bank.toString();
+    }
+
+    public Client selectClient() {
+        bankView.print(bank.getClients());
+        return bankView.selectClient(bank.getClients());
+    }
+
+    public void showAllClients() {
+        bankView.print(bank.getClients());
+    }
+
+    public int getOperation() {
+        return bankView.getOperation();
     }
 }
