@@ -5,9 +5,15 @@ import view.ClientView;
 
 public class ClientService {
     Client client;
+    ClientView clientView;
 
     public ClientService(Client client) {
         this.client = client;
+        this.clientView = new ClientView(client);
+    }
+
+    public ClientView getClientView() {
+        return clientView;
     }
 
     public Client getClient() {
@@ -15,15 +21,15 @@ public class ClientService {
     }
 
     public void depositOperation() {
-        int value = ClientView.getDepositChangeValue();
+        int value = clientView.getDepositChangeValue();
         if (client.pushDeposit(value)) {
-            ClientView.textMsg("Операция успешна!");
+            clientView.textMsg("Операция успешна!");
         } else {
-            ClientView.textMsg("Средств недостаточно! Операция провалена!");
+            clientView.textMsg("Средств недостаточно! Операция провалена!");
         }
     }
 
     public int getOperationWithClient() {
-        return ClientView.getOperationWithClient();
+        return clientView.getOperationWithClient();
     }
 }

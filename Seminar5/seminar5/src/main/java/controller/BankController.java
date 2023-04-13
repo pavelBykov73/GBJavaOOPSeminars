@@ -5,7 +5,6 @@ import model.Client;
 import model.Person;
 import service.BankService;
 import service.ClientService;
-import view.ClientView;
 import view.PersonView;
 
 import java.time.LocalDate;
@@ -86,8 +85,8 @@ public class BankController implements IBankController {
     private void clientMenu() {
         ClientService clientService = new ClientService(bankService.selectClient());
         while (true) {
-            ClientView.clientInfoUpdate(clientService.getClient());
-            int ret = ClientView.getOperationWithClient();
+            clientService.getClientView().clientInfoUpdate(clientService.getClient());
+            int ret = clientService.getOperationWithClient();
             switch (ret) {
                 case 1:
                     clientService.depositOperation();
