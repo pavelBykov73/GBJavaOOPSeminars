@@ -1,5 +1,8 @@
 package ru.gb.oseminar.service;
 
+import ru.gb.oseminar.data.INumerate;
+import ru.gb.oseminar.data.Numerator;
+import ru.gb.oseminar.data.PersonNumerable;
 import ru.gb.oseminar.data.Student;
 
 import java.time.LocalDate;
@@ -21,14 +24,8 @@ public class StudentService implements UserService<Student> {
 
     @Override
     public void create(String firstName, String secondName, String patronymic, LocalDate dateOfBirth) {
-        Long countMaxId = 0L;
-        for (Student student: students){
-                if (student.getStudentId() > countMaxId){
-                    countMaxId = student.getStudentId();
-            }
-        }
-        countMaxId++;
-        Student student = new Student(firstName, secondName, patronymic, dateOfBirth, countMaxId);
+        Numerator<Student> numerator = new Numerator<>(students);
+        Student student = new Student(firstName, secondName, patronymic, dateOfBirth, numerator.getUniqueId());
         students.add(student);
     }
 }

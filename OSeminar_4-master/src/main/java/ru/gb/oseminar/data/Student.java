@@ -2,39 +2,33 @@ package ru.gb.oseminar.data;
 
 import java.time.LocalDate;
 
-public class Student extends User implements Comparable<Student>{
-    private Long studentId;
-
-    public Student(String firstName, String secondName, String patronymic, LocalDate dateOfBirth) {
-        super(firstName, secondName, patronymic, dateOfBirth);
-    }
+public class Student extends PersonNumerable implements Comparable<Student> {
 
     public Student(String firstName, String secondName, String patronymic, LocalDate dateOfBirth, Long studentId) {
-        super(firstName, secondName, patronymic, dateOfBirth);
-        this.studentId = studentId;
+        super(firstName, secondName, patronymic, dateOfBirth, new Id(studentId));
     }
 
     public Long getStudentId() {
-        return studentId;
+        return id.get();
     }
 
     public void setStudentId(Long studentId) {
-        this.studentId = studentId;
+        id.set(studentId);
     }
 
     @Override
     public String toString() {
         return "Student{" +
-               "studentId='" + studentId +'\'' +
-               ", firstName='" + super.getFirstName() + '\'' +
-               ", secondName='" + super.getSecondName() + '\'' +
-               ", patronymic='" + super.getPatronymic() + '\'' +
-               ", dateOfBirth=" + super.getDateOfBirth() +
-               '}';
+                "studentId='" + id.get() + '\'' +
+                ", firstName='" + super.getFirstName() + '\'' +
+                ", secondName='" + super.getSecondName() + '\'' +
+                ", patronymic='" + super.getPatronymic() + '\'' +
+                ", dateOfBirth=" + super.getDateOfBirth() +
+                '}';
     }
 
     @Override
     public int compareTo(Student o) {
-        return this.studentId.compareTo(o.studentId);
+        return this.id.get().compareTo(o.id.get());
     }
 }
