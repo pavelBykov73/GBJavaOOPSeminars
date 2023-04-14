@@ -19,6 +19,9 @@ public class Bank implements Iterable<Client> {
         return clients;
     }
 
+    public void setClients(List<Client> clients) {
+        this.clients = clients;
+    }
 
     @Override
     public String toString() {

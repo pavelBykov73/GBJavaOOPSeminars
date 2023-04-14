@@ -7,7 +7,9 @@ import service.BankService;
 import service.ClientService;
 import view.PersonView;
 
+import java.io.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class BankController implements IBankController {
@@ -15,6 +17,7 @@ public class BankController implements IBankController {
 
     public BankController() {
         bankService = new BankService(new Bank("First bank"));
+        init();
     }
 
     public void fillBankTestClient() {
@@ -28,12 +31,25 @@ public class BankController implements IBankController {
 
     @Override
     public void init() {
-        // TODO load from database or file
+        String filename = "clients.dat";
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filename))) {
+            bankService.setClients((List<Client>) ois.readObject());
+            System.out.println("База клиентов загружена.");
+        } catch (Exception ex) {
+            System.out.println("Ошибка загрузки базы клиентов: " + ex.getMessage());
+        }
     }
 
     @Override
     public void exit() {
-        // TODO store to database or file
+        String filename = "clients.dat";
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filename))) {
+            oos.writeObject(bankService.getAll());
+            System.out.println("File has been written");
+        } catch (Exception ex) {
+
+            System.out.println("Write file error: " + ex.getMessage());
+        }
     }
 
     @Override
@@ -77,6 +93,7 @@ public class BankController implements IBankController {
                     bankService.delete(bankService.selectClient());
                     break;
                 case 0:
+                    exit();
                     return;
             }
         }

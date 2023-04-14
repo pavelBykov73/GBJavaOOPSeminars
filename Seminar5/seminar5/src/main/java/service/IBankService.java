@@ -9,6 +9,8 @@ import java.util.List;
 public interface IBankService {
     List<Client> getAll();
 
+    void setClients(List<Client> clients);
+
     boolean create(String firstName, String lastName, LocalDate dateOfBirth);
 
     boolean delete(Client client);

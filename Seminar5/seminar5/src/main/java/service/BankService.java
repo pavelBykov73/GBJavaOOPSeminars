@@ -23,6 +23,10 @@ public class BankService implements IBankService {
         return bank.getClients();
     }
 
+    public void setClients(List<Client> clients) {
+        bank.setClients(clients);
+    }
+
     private Long getClientMaxId() {
         Long countMaxId = 0L;
         for (Client client : bank.getClients()) {

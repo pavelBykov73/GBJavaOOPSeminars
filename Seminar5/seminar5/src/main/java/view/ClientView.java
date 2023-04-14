@@ -2,6 +2,8 @@ package view;
 
 import model.Client;
 
+import java.io.Serializable;
+
 public class ClientView implements IUserView<Client> {
     private Client client;
 
