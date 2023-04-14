@@ -3,25 +3,18 @@ package ru.gb.oseminar.data;
 import java.time.LocalDate;
 import java.util.Comparator;
 
-public class Teacher extends User {
-
-    private Long teacherId;
-
-    public Teacher(String firstName, String secondName, String patronymic, LocalDate dateOfBirth) {
-        super(firstName, secondName, patronymic, dateOfBirth);
-    }
+public class Teacher extends PersonNumerable {
 
     public Teacher(String firstName, String secondName, String patronymic, LocalDate dateOfBirth, Long id) {
-        super(firstName, secondName, patronymic, dateOfBirth);
-        this.teacherId = id;
+        super(firstName, secondName, patronymic, dateOfBirth, new Id(id));
     }
 
     public Long getTeacherId() {
-        return teacherId;
+        return id.get();
     }
 
     public void setTeacherId(Long teacherId) {
-        this.teacherId = teacherId;
+        id.set(teacherId);
     }
 
     public static class TeacherComparator implements Comparator {
@@ -33,7 +26,7 @@ public class Teacher extends User {
 
     public String toString() {
         return "Teacher{" +
-                "Id='" + teacherId + '\'' +
+                "Id='" + id.get() + '\'' +
                 ", firstName='" + super.getFirstName() + '\'' +
                 ", secondName='" + super.getSecondName() + '\'' +
                 ", patronymic='" + super.getPatronymic() + '\'' +
