@@ -24,7 +24,8 @@ public class StudentService implements UserService<Student> {
 
     @Override
     public void create(String firstName, String secondName, String patronymic, LocalDate dateOfBirth) {
-        Numerator<Student> numerator = new Numerator<>(students);
+        PersonNumerable obj1 = new Student("a", "b", "c", LocalDate.of(2004, 1, 10), 0L);
+        Numerator<PersonNumerable> numerator = new Numerator<>((List<PersonNumerable>) students);
         Student student = new Student(firstName, secondName, patronymic, dateOfBirth, numerator.getUniqueId());
         students.add(student);
     }

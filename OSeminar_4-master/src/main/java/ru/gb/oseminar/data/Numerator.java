@@ -3,9 +3,9 @@ package ru.gb.oseminar.data;
 import java.util.List;
 
 public class Numerator<T extends INumerate> {
-    private List<T> numerateList;
+    private List<PersonNumerable> numerateList;
 
-    public Numerator(List<T> numerateList) {
+    public Numerator(List<PersonNumerable> numerateList) {
         this.numerateList = numerateList;
     }
 
